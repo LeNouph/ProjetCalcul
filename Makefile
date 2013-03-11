@@ -12,7 +12,7 @@ TEST = tests
 # Définition du compilateur
 JC = javac
 # Options de compilation
-JFLAGS = -d $(BIN) -sourcepath $(SRC) -classpath $(BIN)
+JFLAGS = -d $(BIN) -sourcepath $(SRC) -classpath $(BIN) -encoding utf-8
 # Options de compilation pour les tests
 JTESTFLAGS = -d $(BIN)/$(TEST) -sourcepath $(SRC)/$(TEST) -classpath $(BIN)/$(TEST)
 # Nom de la classe contenant le main
