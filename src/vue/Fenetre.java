@@ -98,7 +98,11 @@ public class Fenetre extends JFrame
 		EcranFinish ecranFinish = new EcranFinish(this, jeu);
 		this.getContentPane().add(ecranFinish);
 		ecranFinish.revalidate();
-		ecranFinish.placerFocus();
+		//ecranFinish.placerFocus();
+
+		// On compare le score aux meilleurs UNE FOIS QUE la fenêtre de fin est
+		// affichée, sinon la fenêtre pop-up bloque son affichage
+		ecranFinish.comparerScore();
 	}
 
 	/** Affiche l'écran des meilleurs scores.

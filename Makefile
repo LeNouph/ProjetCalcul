@@ -12,7 +12,7 @@ TEST = tests
 # Définition du compilateur
 JC = javac
 # Options de compilation
-JFLAGS = -d $(BIN) -sourcepath $(SRC) -classpath $(BIN) -encoding utf-8
+JFLAGS = -d $(BIN) -sourcepath $(SRC) -classpath $(BIN) -encoding utf-8 -Xlint
 # Options de compilation pour les tests
 JTESTFLAGS = -d $(BIN)/$(TEST) -sourcepath $(SRC)/$(TEST) -classpath $(BIN)/$(TEST)
 # Nom de la classe contenant le main
@@ -71,7 +71,11 @@ modele: \
 	$(BIN)/modele/Compteur.class\
 	$(BIN)/modele/CompteARebours.class\
 	$(BIN)/modele/Jeu.class\
-	$(BIN)/modele/Niveau.class
+	$(BIN)/modele/Niveau.class\
+	$(BIN)/modele/TableauScores.class\
+	$(BIN)/modele/Scores.class\
+	$(BIN)/modele/Score.class
+
 
 $(BIN)/modele/Compteur.class: $(SRC)/modele/Compteur.java
 	$(JC) $(JFLAGS) $<
@@ -83,6 +87,15 @@ $(BIN)/modele/Jeu.class: $(SRC)/modele/Jeu.java
 	$(JC) $(JFLAGS) $<
 
 $(BIN)/modele/Niveau.class: $(SRC)/modele/Niveau.java
+	$(JC) $(JFLAGS) $<
+
+$(BIN)/modele/TableauScores.class: $(SRC)/modele/TableauScores.java
+	$(JC) $(JFLAGS) $<
+
+$(BIN)/modele/Scores.class: $(SRC)/modele/Scores.java
+	$(JC) $(JFLAGS) $<
+
+$(BIN)/modele/Score.class: $(SRC)/modele/Score.java
 	$(JC) $(JFLAGS) $<
 
 # Nettoyage des fichiers objets

@@ -81,6 +81,74 @@ public class EcranFinish extends JPanel
 		//boutonRetour.requestFocusInWindow();
 	}
 
+	/** Vérifie si le score du joueur mérite d'être enregistré.*/
+	public void comparerScore()
+	{
+		try
+		{
+			// Tentative de lecture du fichier de scores
+			ObjectInputStream flotLecture = new ObjectInputStream(
+					new FileInputStream("scores.obj"));
+			Object o = flotLecture.readObject();
+			flotLecture.close();
+			// Si ça marche et qu'on a bien lu un tableau de scores,
+			// on vérifie si le score mérite d'être enregistré
+			if (o instanceof TableauScores)
+			{
+				TableauScores tab = (TableauScores)o;
+				System.out.println("Scores lus :\n" + tab);
+				if (tab.accepte(this.jeu.getScore(), this.jeu.getNiveau()))
+					enregistrerScore(tab);
+			}
+			else
+				System.out.println("Attention : objet lu de type incorrect !");
+		}
+		catch (FileNotFoundException fnfe)
+		{
+			// Si le fichier n'existe pas, on enregistre à partir de rien
+			enregistrerScore(null);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	/** Propose à l'utilisateur d'enregistrer son score.
+	 * Si la fonction reçoit 'null', un nouveau fichier sera créé avec le score
+	 * du joueur.
+	 * @param tab tableau des scores lu dans le fichier.
+	 */
+	public void enregistrerScore(TableauScores tab)
+	{
+		// On demande son nom au joueur
+		String msg = "Votre score figure parmi les " + Scores.NB_SCORES;
+		msg += " meilleurs pour ce niveau !\nQuel est votre nom ?";
+		String nom = JOptionPane.showInputDialog(null, msg, "Bravo !", 1);
+
+		if (nom != null) // Si le joueur n'a pas annulé
+		{
+			// Si pas encore de scores enregistrés, on en crée.
+			if (tab == null)
+				tab = new TableauScores();
+
+			// Et puis on enregistre le score
+			Jeu j = this.jeu;
+			tab.enregistrer(j.getScore(), nom, j.getNiveau());
+			try
+			{
+				ObjectOutputStream flotEcriture = new ObjectOutputStream(
+						new FileOutputStream("scores.obj"));
+				flotEcriture.writeObject(tab);
+				flotEcriture.close();
+			}
+			catch (IOException ioe)
+			{
+				ioe.printStackTrace();
+			}
+		}
+	}
+
 
 	//
 	// Listeners
