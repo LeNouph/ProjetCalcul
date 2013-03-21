@@ -50,6 +50,7 @@ vue: \
 	$(BIN)/vue/EcranDeJeu.class\
 	$(BIN)/vue/MenuNiveau.class\
 	$(BIN)/vue/EcranFinish.class
+#	$(BIN)/vue/EcranScores.class
 
 $(BIN)/vue/Fenetre.class: $(SRC)/vue/Fenetre.java
 	$(JC) $(JFLAGS) $<
@@ -64,6 +65,9 @@ $(BIN)/vue/MenuNiveau.class: $(SRC)/vue/MenuNiveau.java
 	$(JC) $(JFLAGS) $<
 
 $(BIN)/vue/EcranFinish.class: $(SRC)/vue/EcranFinish.java
+	$(JC) $(JFLAGS) $<
+
+$(BIN)/vue/EcranScores.class: $(SRC)/vue/EcranScores.java
 	$(JC) $(JFLAGS) $<
 
 # Règles de compilation du package 'modele'

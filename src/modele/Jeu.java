@@ -25,8 +25,11 @@ public class Jeu extends Observable
 	public static final int MAX_EXPERT = 1000;
 
 	/** Valeur initiale du compteur.*/
-	public static final int TEMPS_INITIAL = 30;
+	public static final int TEMPS_INITIAL = 1;
 	
+	/** Niveau de la partie.*/
+	private Niveau niveau;
+
 	/** Valeur maximum des nombres proposés.*/
 	private int valMax;
 
@@ -58,7 +61,8 @@ public class Jeu extends Observable
 	 */
 	public Jeu(Niveau niveau)
 	{
-		this.valMax = getMax(niveau);
+		this.niveau = niveau;
+		this.valMax = getMax(niveau); // redondant mais pratique
 		this.generateur = new GenerateurCalculs(this.valMax);
 		this.listeCalculs = new ArrayList<Calcul>();
 		this.indiceCourant = 0;
@@ -81,9 +85,16 @@ public class Jeu extends Observable
 		return this.listeCalculs;
 	}
 
+	/** Renvoie le niveau de la partie.*/
+	public Niveau getNiveau()
+	{
+		return this.niveau;
+	}
+
 	/** Renvoie le calcul courant.
 	 * @deprecated utiliser plutôt getCalcul(int)
 	 */
+	@Deprecated
 	public Calcul getCalculCourant()
 	{
 		return this.listeCalculs.get(this.indiceCourant);
@@ -93,6 +104,7 @@ public class Jeu extends Observable
 	 * @param indice indice du calcul de réserve, égal à 1 pour le plus proche.
 	 * @deprecated utiliser plutôt getCalcul(int).
 	 */
+	@Deprecated
 	public Calcul getCalculAvance(int indice)
 	{
 		if (indice >= 1 && indice <= 3)

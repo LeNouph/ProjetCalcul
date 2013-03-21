@@ -7,12 +7,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-import modele.*;
-import calcul.*;
-
-/** Contenu de la fenêtre quand le jeu est terminé.
+/** Contenu de la fenêtre quand on demande à voir les scores.
  */
-public class EcranFinish extends JPanel
+public class EcranScores extends JPanel
 {
 	//
 	// Attributs
@@ -20,9 +17,6 @@ public class EcranFinish extends JPanel
 	
 	/** La fenetre dans laquelle est affiché l'écran de fin de partie.*/
 	private Fenetre fenetre;
-
-	/** Le jeu qui vient de se terminer.*/
-	private Jeu jeu;
 
 	/** Bouton de retour au menu principal.*/
 	private JButton boutonRetour;
@@ -36,13 +30,12 @@ public class EcranFinish extends JPanel
 	 * @param fenetre la fenetre dans laquelle cet écran est affiché.
 	 * @param jeu le jeu qui vient de se terminer.
 	 */
-	public EcranFinish(Fenetre fenetre, Jeu jeu)
+	public EcranScores(Fenetre fenetre)
 	{
 		/* Titre */
 		this.fenetre = fenetre;
-		this.jeu = jeu;
 		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-		JLabel titre = new JLabel("Partie terminée !");
+		JLabel titre = new JLabel("");
 		titre.setAlignmentX(Component.CENTER_ALIGNMENT);
 		titre.setFont(new Font(null, Font.BOLD, 30));
 		titre.setForeground(Fenetre.BLEU);
@@ -122,16 +115,9 @@ public class EcranFinish extends JPanel
 	public void enregistrerScore(TableauScores tab)
 	{
 		// On demande son nom au joueur
-		Component parent = null;
 		String msg = "Votre score figure parmi les " + Scores.NB_SCORES;
 		msg += " meilleurs pour ce niveau !\nQuel est votre nom ?";
-		String titre = "Bravo !";
-		int type = JOptionPane.INFORMATION_MESSAGE;
-		Icon pic = null;
-		String[] choix = null;
-		String defaut = "Obi-Wan Kenobi";
-		//String nom = JOptionPane.showInputDialog(parent,msg,titre,type,pic,choix,defaut);
-		String nom = JOptionPane.showInputDialog(parent,msg,titre,type);
+		String nom = JOptionPane.showInputDialog(null, msg, "Bravo !", 1);
 
 		if (nom != null) // Si le joueur n'a pas annulé
 		{
