@@ -25,7 +25,7 @@ public class Jeu extends Observable
 	public static final int MAX_EXPERT = 1000;
 
 	/** Valeur initiale du compteur.*/
-	public static final int TEMPS_INITIAL = 1;
+	public static final int TEMPS_INITIAL = 30;
 	
 	/** Niveau de la partie.*/
 	private Niveau niveau;

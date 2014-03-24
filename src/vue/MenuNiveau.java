@@ -15,7 +15,7 @@ public class MenuNiveau extends JPanel
 	//
 	// Attributs
 	//
-
+	
 	/** Fenetre dans laquelle est affiché le menu.
 	 */
 	private Fenetre fenetre;

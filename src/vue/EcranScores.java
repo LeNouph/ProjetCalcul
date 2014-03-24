@@ -26,7 +26,7 @@ public class EcranScores extends JPanel
 	// Constructeur
 	//
 
-	/** Crée un écran de fin de partie.
+	/** Crée un écran des scores.
 	 * @param fenetre la fenetre dans laquelle cet écran est affiché.
 	 * @param jeu le jeu qui vient de se terminer.
 	 */
